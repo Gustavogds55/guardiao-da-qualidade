@@ -5,7 +5,8 @@ describe('Teste de login', () => {
     passwordField: '[name="password"]',
     loginButton: '.oxd-button',
     sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
-    wrongCredentialAlert: '.oxd-alert'
+    wrongCredentialAlert: '.oxd-alert',
+    dasboardGrid: ".orangehrm-dashboard-grid"
   }
   
   it('Login com sucesso', () => {
@@ -14,7 +15,7 @@ describe('Teste de login', () => {
     cy.get(selectorslist.passwordField).type('admin123')
     cy.get(selectorslist.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorslist.sectionTitleTopBar).contains('Dashboar')
+    cy.get(selectorslist.dasboardGrid)
 
   })
    it('Login com falha - usuario invalido', () => {
