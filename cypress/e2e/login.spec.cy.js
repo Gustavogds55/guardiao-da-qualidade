@@ -1,36 +1,44 @@
 describe('Teste de login', () => {
+
+  const selectorslist = {
+    usernameField: '[name="username"]',
+    passwordField: '[name="password"]',
+    loginButton: '.oxd-button',
+    sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
+    wrongCredentialAlert: '.oxd-alert'
+  }
   
   it('Login com sucesso', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('Admin')
-    cy.get('[name="password"]').type('admin123')
-    cy.get('.oxd-button').click()
+    cy.get(selectorslist.usernameField).type('Admin')
+    cy.get(selectorslist.passwordField).type('admin123')
+    cy.get(selectorslist.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get('.oxd-topbar-header-breadcrumb > .oxd-text').contains('Dashboar')
+    cy.get(selectorslist.sectionTitleTopBar).contains('Dashboar')
 
   })
    it('Login com falha - usuario invalido', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('Teste')
-    cy.get('[name="password"]').type('admin123')
-    cy.get('.oxd-button').click()
-    cy.get('.oxd-alert')
+    cy.get(selectorslist.usernameField).type('Teste')
+    cy.get(selectorslist.passwordField).type('admin123')
+    cy.get(selectorslist.loginButton).click()
+    cy.get(selectorslist.wrongCredentialAlert)
 
   })
   it('Login com falha - senha invalida', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('Admin')
-    cy.get('[name="password"]').type('Teste')
-    cy.get('.oxd-button').click()
-    cy.get('.oxd-alert')
+    cy.get(selectorslist.usernameField).type('Admin')
+    cy.get(selectorslist.passwordField).type('Teste')
+    cy.get(selectorslist.loginButton).click()
+    cy.get(selectorslist.wrongCredentialAlert)
 
   })
    it('Login com falha - usuario e senha invalidos', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('[name="username"]').type('ddddd')
-    cy.get('[name="password"]').type('wwwww')
-    cy.get('.oxd-button').click()
-    cy.get('.oxd-alert')
+    cy.get(selectorslist.usernameField).type('ddddd')
+    cy.get(selectorslist.passwordField).type('wwwww')
+    cy.get(selectorslist.loginButton).click()
+    cy.get(selectorslist.wrongCredentialAlert)
 
   })
   
