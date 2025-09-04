@@ -12,7 +12,7 @@ describe('Teste de login', () => {
   }
 
   it('Login com sucesso', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorslist.usernameField).type(userData.userSuccess.username)
     cy.get(selectorslist.passwordField).type(userData.userSuccess.password)
     cy.get(selectorslist.loginButton).click()
@@ -21,7 +21,7 @@ describe('Teste de login', () => {
 
   })
    it('Login com falha - usuario invalido', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorslist.usernameField).type(userData.userFail.username)
     cy.get(selectorslist.passwordField).type(userData.userFail.password)
     cy.get(selectorslist.loginButton).click()
@@ -29,7 +29,7 @@ describe('Teste de login', () => {
 
   })
   it('Login com falha - senha invalida', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorslist.usernameField).type(userData.userFail.username)
     cy.get(selectorslist.passwordField).type(userData.userFail.password)
     cy.get(selectorslist.loginButton).click()
@@ -37,7 +37,7 @@ describe('Teste de login', () => {
 
   })
    it('Login com falha - usuario e senha invalidos', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorslist.usernameField).type(userData.userFail.username)
     cy.get(selectorslist.passwordField).type(userData.userFail.password)
     cy.get(selectorslist.loginButton).click()
