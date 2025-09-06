@@ -16,7 +16,11 @@ describe('User Info Update', () => {
     genericField: '.oxd-input--active',
     dateField: "[placeholder='yyyy-dd-mm']",
     closeButton: '.--close',
-    saveButton: '.orangehrm-left-space'
+    saveButton: '.orangehrm-left-space',
+    listSelectors: '.oxd-select-text--arrow',
+    optionSelect: ':nth-child(22) > span',
+    optionSelect2: '.oxd-select-dropdown > :nth-child(3)',
+    genderSelect: '.--label-right'
 
   }
 
@@ -38,6 +42,18 @@ describe('User Info Update', () => {
     cy.get(selectorslist.closeButton).click()
     cy.get(selectorslist.saveButton).eq(0).click()
     cy.get('.oxd-toast').should('contain', 'Successfully Updated')
+    cy.get(selectorslist.listSelectors).eq(0).click()
+    cy.get(selectorslist.optionSelect).click()
+    cy.get(selectorslist.listSelectors).eq(1).click()
+    cy.get(selectorslist.optionSelect2).click()
+    cy.get(selectorslist.dateField).eq(1).clear().type('1999-10-21')
+    cy.get(selectorslist.closeButton).click()
+    cy.get(selectorslist.genderSelect).eq(0).click()
+    cy.get(selectorslist.saveButton).eq(0).click()
+    cy.get('.oxd-toast').should('contain', 'Successfully Updated')
+
+
+
 
 
 
