@@ -3,8 +3,16 @@
       "username": "Admin",
       "password": "admin123"
     },
-    "userFail": {
+    "userFail0": {
       "username": "Teste",
+      "password": "admin123"
+    },
+    "userFail1": {
+      "username": "Admin",
       "password": "teste123"
+    },
+    "userFail2": {
+      "username": "Teste",
+      "password": "adins2343"
     }
 }
