@@ -1,4 +1,7 @@
 import userData from '../fixtures/user-data.json'
+import MenuPage from '../pages/menuPages'
+
+const menuPage = new MenuPage()
 
 describe('User Info Update', () => {
 
@@ -9,7 +12,7 @@ describe('User Info Update', () => {
     sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
     wrongCredentialAlert: '.oxd-alert',
     dasboardGrid: ".orangehrm-dashboard-grid",
-    myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
+    //myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
     firstNameFild: '[name="firstName"]',
     middldeNameFild: '[name="middleName"]',
     lastNameField: '[name="lastName"]',
@@ -31,7 +34,8 @@ describe('User Info Update', () => {
     cy.get(selectorslist.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorslist.dasboardGrid)
-    cy.get(selectorslist.myInfoButton).click()
+    menuPage.accessMyInfo()
+    //cy.get(selectorslist.myInfoButton).click()
     cy.get(selectorslist.firstNameFild).clear().type('Antonio')
     cy.get(selectorslist.middldeNameFild).clear().type('Luiz')
     cy.get(selectorslist.lastNameField).clear().type('Rodrigues')

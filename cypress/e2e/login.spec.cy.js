@@ -8,10 +8,6 @@ const dashboardPage = new DashboardPage()
 
 describe('Teste de login', () => {
 
-  const selectorslist = {
-    sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
-    dasboardGrid: ".orangehrm-dashboard-grid"
-  }
 
   it.only('Login com sucesso', () => {
     loginPage.accessLoginPage()
