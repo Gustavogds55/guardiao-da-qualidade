@@ -1,13 +1,50 @@
-name: minha primeira pipeline
+name: E2E (Cypress)
 
 on:
   push:
-
+    branches: [main]
+  pull_request:
 
 jobs:
-  myfirstjob:
+  cypress:
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18, 20]
+        browser: [chrome, firefox] # or just [chrome]
+
     steps:
-      - name: Teste pipeline
-        run: |
-          echo "Teste"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          browser: ${{ matrix.browser }}   # chrome | firefox | electron
+          install: false                   # we already ran npm ci
+          start: ''                        # we started app above; leave empty
+          wait-on: 'https://opensource-demo.orangehrmlive.com/web/index.php' # extra safety
+          config-file: cypress.config.js   # adjust if you use .js
+        env:
+          CYPRESS_baseUrl: https://opensource-demo.orangehrmlive.com/web/index.php
+
+      # Save videos/screenshots on failure (helpful for debugging PRs)
+      - name: Upload Cypress artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts-${{ matrix.node }}-${{ matrix.browser }}
+          path: |
+            cypress/screenshots
+            cypress/videos
