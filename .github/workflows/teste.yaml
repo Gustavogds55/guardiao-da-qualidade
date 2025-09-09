@@ -7,5 +7,7 @@ on:
 jobs:
   myfirstjob:
     runs-on: ubuntu-latest
-    steps: | 
-      echo "Teste"
+    steps:
+      - name: Teste pipeline
+        run: |
+          echo "Teste"
