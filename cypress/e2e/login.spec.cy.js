@@ -7,20 +7,17 @@ const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 
 describe('Teste de login', () => {
-
-
+  
   it('Login com sucesso', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
     dashboardPage.checkDashboardPage()
   
-
   })
    it('Login com falha - usuario invalido', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userFail0.username, userData.userFail0.password)
-    loginPage.checkAccessInvalid()
-    
+    loginPage.checkAccessInvalid() 
    
   })
   it('Login com falha - senha invalida', () => {
