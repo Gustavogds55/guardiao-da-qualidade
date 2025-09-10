@@ -10,7 +10,7 @@ This project utilizes Cypress to automate the testing of a login feature and a u
 > it is necessary to have node installed
 
 
-##Running
+## Running
 ```bash
 # Yiu open the Cypress UI
 npx cypress open
